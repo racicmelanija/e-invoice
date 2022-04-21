@@ -6,18 +6,30 @@ import { initializer } from 'src/utils/app.init';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
+import { AdminHeaderComponent } from './shared/layout/headers/admin-header/admin-header.component';
+import { UsersComponent } from './admin/pages/users/users.component';
+import { PrimaryButtonComponent } from './shared/components/primary-button/primary-button.component';
+import { SecondaryButtonComponent } from './shared/components/secondary-button/secondary-button.component';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RolesToStringPipe } from './shared/pipes/roles-to-string.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent
+    AdminHeaderComponent,
+    UsersComponent,
+    PrimaryButtonComponent,
+    SecondaryButtonComponent,
+    RolesToStringPipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule, 
     KeycloakAngularModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
   providers: [
     {
