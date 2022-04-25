@@ -4,6 +4,7 @@ import { AuthGuard } from 'src/utils/app.guard';
 import { UsersComponent } from './admin/pages/users/users.component';
 
 const routes: Routes = [
+  {path: '', redirectTo: 'users', pathMatch: 'full'},
   {path: 'users', component: UsersComponent, canActivate: [AuthGuard], data: {roles: ['ROLE_ADMIN']}}
 ];
 

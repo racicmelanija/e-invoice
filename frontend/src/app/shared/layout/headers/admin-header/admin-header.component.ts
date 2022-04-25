@@ -10,6 +10,7 @@ export class AdminHeaderComponent implements OnInit {
   isVisible: boolean = true;
   dropdownMenuVisible: boolean = false;
   isGlassEffect: boolean = false;
+  selectedButton: string = 'users';
   _ = require('lodash');
   debouncedOnScroll = this._.debounce(() => this.toggleNavigationBackground(), 300, {})
 
@@ -32,12 +33,13 @@ export class AdminHeaderComponent implements OnInit {
       this.isGlassEffect = false;
     else
       this.isGlassEffect = true;
-
-    console.log(this.isGlassEffect)
   }
 
   logout(): void {
     this.keycloakService.logout();
   }
 
+  selectButton(selectedButton: string): void {
+    this.selectedButton = selectedButton;
+  }
 }

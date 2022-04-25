@@ -1,13 +1,13 @@
 <div>
     <div *ngIf="isVisible" class="glass" [ngClass]="{ 'active' : isGlassEffect }"></div>
     <nav *ngIf="isVisible" class="navbar navbar-light">
-        <div routerLink="/" class="fishbook-logo-wrapper d-flex align-items-center">
-            <svg class="fishbook-logo"></svg>
+        <div routerLink="/" class="einvoice-logo-wrapper d-flex align-items-center">
+            <svg class="einvoice-logo"></svg>
             <h5 class="fw-bold brand">e-invoice</h5>
         </div>
         <div class="nav-items d-flex flex-row align-items-center">
-            <span class="nav-item" [routerLink]="['/users']">Users</span>
-            <span class="nav-item">Companies</span>
+            <span class="nav-item" [ngClass]="selectedButton == 'users' ? 'nav-item-selected' : 'nav-item'" (click)="selectButton('users')" [routerLink]="['/users']">Users</span>
+            <span class="nav-item" [ngClass]="selectedButton == 'companies' ? 'nav-item-selected' : 'nav-item'" (click)="selectButton('companies')">Companies</span>
             <span class="nav-item" (click)="logout()">Log out</span>
         </div>
         <svg class="navbar-menu" (click)="toggleDropdownMenu()"></svg>

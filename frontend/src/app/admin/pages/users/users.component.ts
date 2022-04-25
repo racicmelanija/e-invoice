@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { User } from 'src/app/models/user.model';
 import { UserService } from '../../services/user.service';
+import { RoleAssignmentDialogComponent } from './components/role-assignment-dialog/role-assignment-dialog.component';
 
 @Component({
   selector: 'app-users',
@@ -13,7 +15,7 @@ export class UsersComponent implements OnInit {
   users: User[] = [];
   filteredUsers: User[] = [];
 
-  constructor(private userService: UserService, private toastr: ToastrService) { }
+  constructor(private userService: UserService, private toastr: ToastrService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.userService.getUsers().subscribe(
@@ -49,6 +51,16 @@ export class UsersComponent implements OnInit {
         this.filterUsers();
       }
     );
+  }
+
+  showDialog(userId: string): void {
+    let selectedUser = this.users.filter(user => user.id === userId)[0];
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.data = {
+      userId: userId,
+      roles: selectedUser.roles
+    }
+    this.dialog.open(RoleAssignmentDialogComponent, dialogConfig);
   }
 
 }

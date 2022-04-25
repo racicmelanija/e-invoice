@@ -213,3 +213,7 @@ input:checked + .slider:before {
     .c-toast--error{
       background-color: color(red) !important;
     }
+
+mat-dialog-container {
+    background-color: white !important;
+}

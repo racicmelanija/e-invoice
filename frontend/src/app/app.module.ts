@@ -3,6 +3,7 @@ import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 import { initializer } from 'src/utils/app.init';
+import { MatDialogModule } from "@angular/material/dialog";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,6 +14,7 @@ import { SecondaryButtonComponent } from './shared/components/secondary-button/s
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RolesToStringPipe } from './shared/pipes/roles-to-string.pipe';
+import { RoleAssignmentDialogComponent } from './admin/pages/users/components/role-assignment-dialog/role-assignment-dialog.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,8 @@ import { RolesToStringPipe } from './shared/pipes/roles-to-string.pipe';
     UsersComponent,
     PrimaryButtonComponent,
     SecondaryButtonComponent,
-    RolesToStringPipe
+    RolesToStringPipe,
+    RoleAssignmentDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +32,8 @@ import { RolesToStringPipe } from './shared/pipes/roles-to-string.pipe';
     KeycloakAngularModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    MatDialogModule
   ],
   providers: [
     {
@@ -39,6 +43,7 @@ import { RolesToStringPipe } from './shared/pipes/roles-to-string.pipe';
       deps: [KeycloakService],
     },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [RoleAssignmentDialogComponent]
 })
 export class AppModule { }

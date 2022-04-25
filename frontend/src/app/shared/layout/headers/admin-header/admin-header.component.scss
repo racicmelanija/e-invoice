@@ -30,12 +30,12 @@
     opacity: 1;
 }
 
-    .fishbook-logo-wrapper{
+    .einvoice-logo-wrapper{
         @include noselect;
         cursor: pointer;
     }
 
-        .fishbook-logo{
+        .einvoice-logo{
             @include background-svg($einvoice-logo);
             @include icon;
             width: 41px;
@@ -68,6 +68,10 @@
             margin-right: 40px;
             color: color(lightblue);
             cursor: pointer;
+        }
+
+        .nav-item-selected{
+            font-weight: bold;
         }
 
     .navbar-menu{

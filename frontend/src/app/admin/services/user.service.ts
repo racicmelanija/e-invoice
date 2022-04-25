@@ -20,4 +20,15 @@ export class UserService {
   getUserRoles(id: string): Observable<any> {
     return this.http.get(this.baseUrl + '/' + id + '/role-mappings/realm');
   }
+
+  postUserRoles(id: string, roles: any[]): Observable<any> {
+    return this.http.post(this.baseUrl + '/' + id + '/role-mappings/realm', roles);
+  }
+
+  deleteUserRoles(id: string, roles: any[]): Observable<any> {
+    let options = {
+      body: roles
+    }
+    return this.http.delete(this.baseUrl + '/' + id + '/role-mappings/realm', options);
+  }
 }
