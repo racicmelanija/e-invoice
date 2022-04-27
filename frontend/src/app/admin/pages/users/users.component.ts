@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
@@ -15,7 +16,7 @@ export class UsersComponent implements OnInit {
   users: User[] = [];
   filteredUsers: User[] = [];
 
-  constructor(private userService: UserService, private toastr: ToastrService, private dialog: MatDialog) { }
+  constructor(private userService: UserService, private toastr: ToastrService, private dialog: MatDialog, private http: HttpClient) { }
 
   ngOnInit(): void {
     this.userService.getUsers().subscribe(
@@ -27,6 +28,8 @@ export class UsersComponent implements OnInit {
         this.toastr.error(error.message, "Error");
     });
     
+    //testing zone
+    this.http.get("http://localhost:9090/company-service/").subscribe();
   }
 
   selectButton(selectedButton: string): void {
