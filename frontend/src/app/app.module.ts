@@ -15,6 +15,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RolesToStringPipe } from './shared/pipes/roles-to-string.pipe';
 import { RoleAssignmentDialogComponent } from './admin/pages/users/components/role-assignment-dialog/role-assignment-dialog.component';
+import { RegisterCompanyComponent } from './admin/pages/register-company/register-company.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -24,10 +26,12 @@ import { RoleAssignmentDialogComponent } from './admin/pages/users/components/ro
     PrimaryButtonComponent,
     SecondaryButtonComponent,
     RolesToStringPipe,
-    RoleAssignmentDialogComponent
+    RoleAssignmentDialogComponent,
+    RegisterCompanyComponent
   ],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
     AppRoutingModule, 
     KeycloakAngularModule,
     HttpClientModule,

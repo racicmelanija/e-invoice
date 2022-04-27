@@ -1,0 +1,68 @@
+<div class="d-flex flex-column content">
+    <div class="d-flex flex-column e-container side-margins">
+        <div class="title">Register a new company</div>
+
+        <form class="d-flex flex-column" [formGroup]="registrationForm">
+            <div class="input-container form-fields" [ngClass]="{'input-container-error' : (registrationForm.controls.companyName.touched && registrationForm.controls.companyName.errors)}">
+                <label for="companyName" class="input-label">Company name</label>
+                <input id="companyName" type="text" name="companyName" formControlName="companyName">
+                <span class="error-message" *ngIf="registrationForm.controls.companyName.touched && registrationForm.controls.companyName.errors?.['required']">Company name cannot be empty.</span>
+            </div>
+            <div class="d-flex flex-row form-fields">
+                <div class="input-container first" [ngClass]="{'input-container-error' : (registrationForm.controls.taxIdentificationNumber.touched && registrationForm.controls.taxIdentificationNumber.errors)}">
+                    <label for="taxIdentificationNumber" class="input-label">Tax identification number</label>
+                    <input id="taxIdentificationNumber" type="text" name="taxIdentificationNumber" formControlName="taxIdentificationNumber">
+                    <span class="error-message" *ngIf="registrationForm.controls.taxIdentificationNumber.touched && registrationForm.controls.taxIdentificationNumber.errors?.['required']">Tax identification number cannot be empty.</span>
+                    <span class="error-message" *ngIf="registrationForm.controls.taxIdentificationNumber.touched && (registrationForm.controls.taxIdentificationNumber.errors?.['minlength'] || registrationForm.controls.taxIdentificationNumber.errors?.['maxlength'])">Tax identification number must contain 9 digits.</span>
+                </div>
+                <div class="input-container second" [ngClass]="{'input-container-error' : (registrationForm.controls.companyRegistrationNumber.touched && registrationForm.controls.companyRegistrationNumber.errors)}">
+                    <label for="companyRegistrationNumber" class="input-label">Company registration number</label>
+                    <input id="companyRegistrationNumber" type="text" name="companyRegistrationNumber" formControlName="companyRegistrationNumber">
+                    <span class="error-message" *ngIf="registrationForm.controls.companyRegistrationNumber.touched && registrationForm.controls.companyRegistrationNumber.errors?.['required']">Company registration number cannot be empty.</span>
+                    <span class="error-message" *ngIf="registrationForm.controls.companyRegistrationNumber.touched && (registrationForm.controls.companyRegistrationNumber.errors?.['minlength'] || registrationForm.controls.companyRegistrationNumber.errors?.['maxlength'])">Company registration number must contain 8 digits.</span>
+                </div>
+            </div>
+            <div class="form-fields w-100 d-flex flex-row">
+                <div class="d-flex flex-row w-50 first">
+                    <div class="input-container first w-50" [ngClass]="{'input-container-error' : (registrationForm.controls.phoneNumber.touched && registrationForm.controls.phoneNumber.errors?.['required'])}">
+                        <label for="phoneNumber" class="input-label">Phone number</label>
+                        <input id="phoneNumber" type="text" name="phoneNumber" formControlName="phoneNumber">
+                        <span class="error-message" *ngIf="registrationForm.controls.phoneNumber.touched && registrationForm.controls.phoneNumber.errors?.['required']">Phone number cannot be empty.</span>
+                    </div>
+                    <div class="input-container second w-50" [ngClass]="{'input-container-error' : (registrationForm.controls.address.touched && registrationForm.controls.address.errors?.['required'])}">
+                        <label for="address" class="input-label">Address</label>
+                        <input id="address" type="text" name="address" formControlName="address">
+                        <span class="error-message" *ngIf="registrationForm.controls.address.touched && registrationForm.controls.address.errors?.['required']">Address cannot be empty.</span>
+                    </div>
+                </div>
+                <div class="d-flex flex-row w-50 second">
+                    <div class="input-container first w-50" [ngClass]="{'input-container-error' : (registrationForm.controls.country.touched && registrationForm.controls.country.errors?.['required'])}">
+                        <label for="country" class="input-label">Country</label>
+                        <select id="country" name='country' formControlName="country" (change)="onCountryChanged()">
+                            <option *ngFor="let country of countries" [value]="country.name">{{country.name}}</option>
+                        </select>
+                        <span class="error-message" *ngIf="registrationForm.controls.country.touched && registrationForm.controls.country.errors?.['required']">Select country.</span>
+                    </div>
+                    <div class="input-container second w-50" [ngClass]="{'input-container-error' : (registrationForm.controls.city.touched && registrationForm.controls.city.errors?.['required'])}">
+                        <label for="city" class="input-label">City</label>
+                        <select id="city" name='city' formControlName="city">
+                            <option *ngFor="let city of filteredCities" [value]="city.name">{{city.name}}</option>
+                        </select>
+                        <span class="error-message" *ngIf="registrationForm.controls.city.touched && registrationForm.controls.city.errors?.['required']">Select city.</span>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex flex-row form-fields">
+                <div class="input-container first">
+                    <label for="localCurrencyAccount" class="input-label">Local currency account</label>
+                    <input id="localCurrencyAccount" type="text" name="localCurrencyAccount" formControlName="localCurrencyAccount">
+                </div>
+                <div class="input-container second">
+                    <label for="foreignCurrencyAccount" class="input-label">Foreign currency account</label>
+                    <input id="foreignCurrencyAccount" type="text" name="foreignCurrencyAccount" formControlName="foreignCurrencyAccount">
+                </div>
+            </div>
+        </form>
+        <app-primary-button text="Register company" [isBtnDisabled]="!registrationForm.valid" (click)="onSubmit()"></app-primary-button>
+    </div>
+</div>
