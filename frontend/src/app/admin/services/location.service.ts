@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class LocationService {
-  baseUrl: string = environment.baseUrl + '/location/';
+  baseUrl: string = environment.baseUrl + '/company-service/location/';
 
   constructor(private http: HttpClient) { }
 

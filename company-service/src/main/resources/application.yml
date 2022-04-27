@@ -9,6 +9,25 @@ spring:
       resourceserver:
         jwt:
           issuer-uri: "http://localhost:8080/realms/e-invoice"
+  sql:
+    init:
+      platform: postgres
+  datasource:
+    url: jdbc:postgresql://localhost:5432/companies.db
+    password: ENC(+QEHSICdcRoFSoZOEZ5vsxzt1TIwRgkbexyUHfYufVbvwcefGbbGVN717p2cH0eO)
+    username: ENC(1we+0DxUhv5lPrUaFyIISo8ZU2bw+frU8xcHFSAJj4lRi696FHMJuiHDEy6rdszJ)
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQL95Dialect
+        temp:
+          use_jdbc_metadata_defaults: false
+        jdbc:
+          lob:
+            non_contextual_creation: true
+    hibernate:
+      ddl-auto: create-drop
 
 eureka:
   client:

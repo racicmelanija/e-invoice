@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { City } from 'src/app/models/city.model';
 import { Country } from 'src/app/models/country.model';
+import { CompanyService } from '../../services/company.service';
 import { LocationService } from '../../services/location.service';
 
 @Component({
@@ -15,7 +17,7 @@ export class RegisterCompanyComponent implements OnInit {
   cities: City[] = [];
   filteredCities: City[] = [];
 
-  constructor(private locationService: LocationService) { }
+  constructor(private locationService: LocationService, private companyService: CompanyService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.initializeForm();
@@ -33,7 +35,27 @@ export class RegisterCompanyComponent implements OnInit {
     )
   }
 
-  onSubmit(): void {}
+  onSubmit(): void {
+    let company = {
+      companyName: this.registrationForm.get("companyName")?.value,
+      taxIdentificationNumber: this.registrationForm.get("taxIdentificationNumber")?.value,
+      companyRegistrationNumber: this.registrationForm.get("companyRegistrationNumber")?.value,
+      phoneNumber: this.registrationForm.get("phoneNumber")?.value,
+      address: {
+        address: this.registrationForm.get("address")?.value,
+        city: this.cities.filter(c => c.name == this.registrationForm.get("city")?.value)[0]
+      }
+    }
+
+    this.companyService.postCompany(company).subscribe(
+      data => {
+        this.toastr.success("Successfully registered company");
+        this.registrationForm.reset();
+      },
+      error => {
+        this.toastr.error("Error registering company");
+      })
+  }
 
   onCountryChanged() {
     this.filteredCities = this.cities.filter(c => c.country.name == this.registrationForm.get('country')?.value);
