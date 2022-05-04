@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { City } from 'src/app/models/city.model';
 import { Country } from 'src/app/models/country.model';
@@ -65,14 +65,12 @@ export class RegisterCompanyComponent implements OnInit {
   private initializeForm(): void{
     this.registrationForm = new FormGroup({
       companyName: new FormControl('', [Validators.required]),
-      taxIdentificationNumber: new FormControl('', [Validators.required, Validators.minLength(9), Validators.maxLength(9)]),
-      companyRegistrationNumber : new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(8)]),
+      taxIdentificationNumber: new FormControl('', [Validators.required]),
+      companyRegistrationNumber : new FormControl('', [Validators.required]),
       city : new FormControl('', [Validators.required]),
       country : new FormControl('', [Validators.required]),
       address: new FormControl('', [Validators.required]),
-      phoneNumber: new FormControl('', [Validators.required]),
-      localCurrencyAccount: new FormControl(''),
-      foreignCurrencyAccount: new FormControl(''),
+      phoneNumber: new FormControl('', [Validators.required])
     });
   }
 
