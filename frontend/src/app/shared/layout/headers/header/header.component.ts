@@ -2,21 +2,23 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { KeycloakService } from 'keycloak-angular';
 
 @Component({
-  selector: 'app-admin-header',
-  templateUrl: './admin-header.component.html',
-  styleUrls: ['./admin-header.component.scss']
+  selector: 'app-header',
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.component.scss']
 })
-export class AdminHeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit {
   isVisible: boolean = true;
   dropdownMenuVisible: boolean = false;
   isGlassEffect: boolean = false;
   selectedButton: string = 'users';
   _ = require('lodash');
   debouncedOnScroll = this._.debounce(() => this.toggleNavigationBackground(), 300, {})
+  roles: any[] = [];
 
   constructor(private keycloakService : KeycloakService) { }
 
   ngOnInit(): void {
+    this.roles = this.keycloakService.getUserRoles();
   }
 
   @HostListener('window:scroll', ['$event'])
@@ -41,5 +43,9 @@ export class AdminHeaderComponent implements OnInit {
 
   selectButton(selectedButton: string): void {
     this.selectedButton = selectedButton;
+  }
+
+  containsRole(roleName: string): boolean {
+    return this.roles.some(role => role === roleName);
   }
 }

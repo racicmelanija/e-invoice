@@ -8,12 +8,9 @@ import { KeycloakService } from 'keycloak-angular';
 })
 export class AppComponent implements OnInit {
   title = 'frontend';
-  role = '';
 
-  constructor(private keycloakService: KeycloakService){}
+  constructor(){}
 
-  ngOnInit(): void {
-    this.role = this.keycloakService.getUserRoles().filter(role => role.startsWith('ROLE_'))[0];
-  }
+  ngOnInit(): void {}
 
 }

@@ -45,6 +45,10 @@ h5 {
     font-size: $h5-size !important;
 }
 
+.form-fields{
+    margin-bottom: 25px;
+}
+
 .input-container {
     text-align: center;
     border: solid 1px color(darkgrey);
@@ -109,7 +113,6 @@ h5 {
 }
 
 .input-container-error{
-    background-color: rgb(255, 208, 208);
     border-color: color(red);
 }
 
@@ -194,6 +197,16 @@ input:checked + .slider:before {
     padding: 30px;
     box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.06);
 }
+
+.content{
+    margin-top: 70px;
+    margin-bottom: $grid-margin-height;
+}
+
+    .side-margins{
+        margin-left: $grid-margin-width * 2;
+        margin-right: $grid-margin-width * 2;
+    }
 
 .c-toast-container{
     padding: 0 !important;

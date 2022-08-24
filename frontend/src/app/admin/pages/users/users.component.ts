@@ -27,9 +27,6 @@ export class UsersComponent implements OnInit {
       }, error =>{
         this.toastr.error(error.message, "Error");
     });
-    
-    //testing zone
-    this.http.get("http://localhost:9090/company-service/").subscribe();
   }
 
   selectButton(selectedButton: string): void {
