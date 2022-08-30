@@ -3,7 +3,6 @@ package com.einvoice.companyservice.service;
 import com.einvoice.companyservice.exception.CompanyOwnerNotFoundException;
 import com.einvoice.companyservice.model.Company;
 import com.einvoice.companyservice.model.Employment;
-import com.einvoice.companyservice.model.User;
 import com.einvoice.companyservice.repository.CompanyRepository;
 import com.einvoice.companyservice.repository.EmploymentRepository;
 import com.einvoice.companyservice.repository.UserRepository;

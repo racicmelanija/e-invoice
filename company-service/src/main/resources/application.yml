@@ -38,3 +38,12 @@ eureka:
   instance:
     hostname: localhost
     prefer-ip-address: true
+
+keycloak:
+  location_path: "/admin/realms/e-invoice/users/"
+  server_url: "http://localhost:8080/"
+  master_realm: master
+  realm: e-invoice
+  client_id: admin-cli
+  username: admin
+  password: 123
