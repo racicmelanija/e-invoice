@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.UUID;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -13,6 +15,7 @@ import lombok.Setter;
 @Builder
 public class RegisterCompanyInfo {
 
+    private UUID companyOwnerId;
     private String companyName;
     private String taxIdentificationNumber;
     private String companyRegistrationNumber;

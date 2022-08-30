@@ -6,10 +6,13 @@ import com.einvoice.companyservice.service.info.LocalCurrencyBankAccountInfo;
 import com.einvoice.companyservice.service.info.RegisterCompanyInfo;
 import com.einvoice.companyservice.service.info.AddressInfo;
 
+import java.util.UUID;
+
 public class CompanyConverter {
 
-    public static RegisterCompanyInfo toRegisterCompanyInfo(RegisterCompanyRequest request) {
+    public static RegisterCompanyInfo toRegisterCompanyInfo(RegisterCompanyRequest request, UUID companyOwnerId) {
         return RegisterCompanyInfo.builder()
+                .companyOwnerId(companyOwnerId)
                 .companyName(request.getCompanyName())
                 .taxIdentificationNumber(request.getTaxIdentificationNumber())
                 .companyRegistrationNumber(request.getCompanyRegistrationNumber())
