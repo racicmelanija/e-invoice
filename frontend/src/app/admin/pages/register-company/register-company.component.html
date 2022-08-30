@@ -54,6 +54,43 @@
                 <input id="phoneNumber" type="text" name="phoneNumber" formControlName="phoneNumber">
                 <span class="error-message" *ngIf="registrationForm.controls.phoneNumber.touched && registrationForm.controls.phoneNumber.errors?.['required']">Phone number cannot be empty.</span>
             </div>
+
+            <div class="d-flex flex-row form-fields">
+                <div class="input-container first">
+                    <label for="localCurrencyAccount" class="input-label">Local currency account</label>
+                    <input id="localCurrencyAccount" type="text" name="localCurrencyAccount" formControlName="localCurrencyAccount">
+                </div>
+                <div class="input-container second">
+                    <label for="eBankingFormat" class="input-label">E-banking format</label>
+                    <select id="eBankingFormat" name='eBankingFormat' formControlName="eBankingFormat">
+                        <option value="HALCOM">HALCOM</option>
+                        <option value="FX_CLIENT">FX CLIENT</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="d-flex flex-row form-fields">
+                <div class="input-container first">
+                    <label for="foreignCurrencyAccount" class="input-label">Foreign currency account</label>
+                    <input id="foreignCurrencyAccount" type="text" name="foreignCurrencyAccount" formControlName="foreignCurrencyAccount">
+                </div>
+                <div class="input-container second">
+                    <label for="currency" class="input-label">Currency</label>
+                    <select id="currency" name='currency' formControlName="currency">
+                        <option value="EUR">EUR</option>
+                        <option value="USD">USD</option>
+                        <option value="CHF">CHF</option>
+                        <option value="GBP">GBP</option>
+                        <option value="AUD">AUD</option>
+                        <option value="CAD">CAD</option>
+                        <option value="SEK">SEK</option>
+                        <option value="NOK">NOK</option>
+                        <option value="DKK">DKK</option>
+                        <option value="JPY">JPY</option>
+                        <option value="RUB">RUB</option>
+                    </select>
+                </div>
+            </div>
         </form>
         <app-primary-button text="Register company" [isBtnDisabled]="!registrationForm.valid" (click)="onSubmit()"></app-primary-button>
     </div>

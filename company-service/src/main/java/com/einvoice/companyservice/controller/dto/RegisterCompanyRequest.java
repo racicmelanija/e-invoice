@@ -1,5 +1,7 @@
 package com.einvoice.companyservice.controller.dto;
 
+import com.einvoice.companyservice.model.Currency;
+import com.einvoice.companyservice.model.EBankingFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -35,4 +37,9 @@ public class RegisterCompanyRequest {
 
     @NotNull
     private UUID cityId;
+
+    private String localCurrencyBankAccount;
+    private EBankingFormat bankingFormat;
+    private String foreignCurrencyBankAccount;
+    private Currency currency;
 }

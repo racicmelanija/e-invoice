@@ -7,7 +7,7 @@ import { UsersComponent } from './admin/pages/users/users.component';
 const routes: Routes = [
   {path: '', redirectTo: 'users', pathMatch: 'full'},
   {path: 'users', component: UsersComponent, canActivate: [AuthGuard], data: {roles: ['realm-admin']}},
-  {path: 'companies', component: RegisterCompanyComponent, canActivate: [AuthGuard], data: {roles: ['ROLE_ADMIN', 'realm-admin']}}
+  {path: 'companies', component: RegisterCompanyComponent, canActivate: [AuthGuard], data: {roles: ['COMPANY_OWNER', 'realm-admin']}}
 ];
 
 @NgModule({
