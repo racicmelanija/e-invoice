@@ -14,6 +14,8 @@ public class RegisterCompany {
 
     private final CompanyRepository companyRepository;
     private final CreateAddress createAddress;
+    private final CreateLocalCurrencyBankAccount createLocalCurrencyBankAccount;
+    private final CreateForeignCurrencyBankAccount createForeignCurrencyBankAccount;
 
     @Transactional(rollbackFor = Throwable.class)
     public void execute(RegisterCompanyInfo info) {
@@ -21,13 +23,20 @@ public class RegisterCompany {
             throw new CompanyAlreadyRegisteredException();
         }
 
-        companyRepository.save(Company.builder()
+        Company company = companyRepository.save(Company.builder()
                 .companyName(info.getCompanyName())
                 .taxIdentificationNumber(info.getTaxIdentificationNumber())
                 .companyRegistrationNumber(info.getCompanyRegistrationNumber())
                 .phoneNumber(info.getPhoneNumber())
                 .address(createAddress.execute(info.getAddressInfo()))
                 .build());
+
+        if(info.getLocalCurrencyBankAccountInfo() != null) {
+            createLocalCurrencyBankAccount.execute(info.getLocalCurrencyBankAccountInfo(), company);
+        }
+        if(info.getForeignCurrencyBankAccountInfo() != null) {
+            createForeignCurrencyBankAccount.execute(info.getForeignCurrencyBankAccountInfo(), company);
+        }
     }
 
     private boolean isRegistered(String taxIdentificationNumber, String companyRegistrationNumber) {

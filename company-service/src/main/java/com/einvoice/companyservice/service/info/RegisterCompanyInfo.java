@@ -18,4 +18,6 @@ public class RegisterCompanyInfo {
     private String companyRegistrationNumber;
     private String phoneNumber;
     private AddressInfo addressInfo;
+    private LocalCurrencyBankAccountInfo localCurrencyBankAccountInfo;
+    private ForeignCurrencyBankAccountInfo foreignCurrencyBankAccountInfo;
 }

@@ -1,6 +1,8 @@
 package com.einvoice.companyservice.converter;
 
 import com.einvoice.companyservice.controller.dto.RegisterCompanyRequest;
+import com.einvoice.companyservice.service.info.ForeignCurrencyBankAccountInfo;
+import com.einvoice.companyservice.service.info.LocalCurrencyBankAccountInfo;
 import com.einvoice.companyservice.service.info.RegisterCompanyInfo;
 import com.einvoice.companyservice.service.info.AddressInfo;
 
@@ -16,6 +18,14 @@ public class CompanyConverter {
                         .address(request.getAddress())
                         .cityId(request.getCityId())
                         .build())
+                .localCurrencyBankAccountInfo(!request.getLocalCurrencyBankAccount().isBlank() ? LocalCurrencyBankAccountInfo.builder()
+                        .accountNumber(request.getLocalCurrencyBankAccount())
+                        .eBankingFormat(request.getBankingFormat())
+                        .build() : null)
+                .foreignCurrencyBankAccountInfo(!request.getForeignCurrencyBankAccount().isBlank() ? ForeignCurrencyBankAccountInfo.builder()
+                        .accountNumber(request.getForeignCurrencyBankAccount())
+                        .currency(request.getCurrency())
+                        .build() : null)
                 .build();
     }
 }

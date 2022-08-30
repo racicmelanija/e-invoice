@@ -42,7 +42,11 @@ export class RegisterCompanyComponent implements OnInit {
       companyRegistrationNumber: this.registrationForm.get("companyRegistrationNumber")?.value,
       phoneNumber: this.registrationForm.get("phoneNumber")?.value,
       address: this.registrationForm.get("address")?.value,
-      cityId: this.cities.filter(c => c.name == this.registrationForm.get("city")?.value)[0].id
+      cityId: this.cities.filter(c => c.name == this.registrationForm.get("city")?.value)[0].id, 
+      localCurrencyBankAccount: this.registrationForm.get("localCurrencyAccount")?.value,
+      bankingFormat: this.registrationForm.get("eBankingFormat")?.value,
+      foreignCurrencyBankAccount: this.registrationForm.get("foreignCurrencyAccount")?.value,
+      currency: this.registrationForm.get("currency")?.value
     }
 
     this.companyService.postCompany(company).subscribe(
@@ -67,7 +71,11 @@ export class RegisterCompanyComponent implements OnInit {
       city : new FormControl('', [Validators.required]),
       country : new FormControl('', [Validators.required]),
       address: new FormControl('', [Validators.required]),
-      phoneNumber: new FormControl('', [Validators.required])
+      phoneNumber: new FormControl('', [Validators.required]),
+      localCurrencyAccount: new FormControl(''),
+      eBankingFormat: new FormControl(''),
+      foreignCurrencyAccount: new FormControl(''),
+      currency: new FormControl('')
     });
   }
 
