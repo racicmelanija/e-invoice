@@ -28,18 +28,14 @@ public class Company {
     @GeneratedValue(generator = "uuid")
     private UUID id;
 
-    @NotBlank(message = "Company name can't be empty")
     private String companyName;
 
-    @Size(min = 9, max = 9, message = "Tax identification number must contain 9 digits")
     @Column(unique = true)
     private String taxIdentificationNumber;
 
-    @Size(min = 8, max = 8, message = "Company registration number must contain 8 digits")
     @Column(unique = true)
     private String companyRegistrationNumber;
 
-    @NotBlank
     private String phoneNumber;
 
     @ManyToOne
