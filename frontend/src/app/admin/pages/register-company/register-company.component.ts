@@ -24,13 +24,13 @@ export class RegisterCompanyComponent implements OnInit {
 
     this.locationService.getCountries().subscribe(
       data => {
-        this.countries = data;
+        this.countries = data.countries;
       }
     )
     this.locationService.getCities().subscribe(
       data => {
-        this.cities = data;
-        this.filteredCities = data;
+        this.cities = data.cities;
+        this.filteredCities = data.cities;
       }
     )
   }
@@ -41,10 +41,8 @@ export class RegisterCompanyComponent implements OnInit {
       taxIdentificationNumber: this.registrationForm.get("taxIdentificationNumber")?.value,
       companyRegistrationNumber: this.registrationForm.get("companyRegistrationNumber")?.value,
       phoneNumber: this.registrationForm.get("phoneNumber")?.value,
-      address: {
-        address: this.registrationForm.get("address")?.value,
-        city: this.cities.filter(c => c.name == this.registrationForm.get("city")?.value)[0]
-      }
+      address: this.registrationForm.get("address")?.value,
+      cityId: this.cities.filter(c => c.name == this.registrationForm.get("city")?.value)[0].id
     }
 
     this.companyService.postCompany(company).subscribe(
@@ -53,12 +51,11 @@ export class RegisterCompanyComponent implements OnInit {
         this.registrationForm.reset();
       },
       error => {
-        this.toastr.error("Error registering company");
+        this.toastr.error(error.error.errorMessage, "Error registering company");
       })
   }
 
   onCountryChanged() {
-    this.filteredCities = this.cities.filter(c => c.country.name == this.registrationForm.get('country')?.value);
     this.registrationForm.controls.city.setValue('');
   }
 

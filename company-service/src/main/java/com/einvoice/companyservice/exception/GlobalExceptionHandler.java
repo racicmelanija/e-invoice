@@ -10,13 +10,23 @@ import java.time.LocalDateTime;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(CompanyAlreadyRegisteredException.class)
-    public ResponseEntity<ExceptionResponse> unauthorizedException(CompanyAlreadyRegisteredException ex) {
-        ExceptionResponse response = new ExceptionResponse();
-        response.setErrorCode("CONFLICT");
-        response.setErrorMessage(ex.getMessage());
-        response.setTimestamp(LocalDateTime.now());
+    @ExceptionHandler({
+            CityNotFoundException.class,
+            CountryNotFoundException.class
+    })
+    public ResponseEntity<ExceptionResponse> handleNotFound(Exception ex) {
+        return new ResponseEntity<>(getResponse(ex), HttpStatus.NOT_FOUND);
+    }
 
-        return new ResponseEntity<>(response, HttpStatus.CONFLICT);
+    @ExceptionHandler(CompanyAlreadyRegisteredException.class)
+    public ResponseEntity<ExceptionResponse> handleConflict(Exception ex) {
+        return new ResponseEntity<>(getResponse(ex), HttpStatus.CONFLICT);
+    }
+
+    private ExceptionResponse getResponse(Exception ex) {
+        return ExceptionResponse.builder()
+                .errorMessage(ex.getMessage())
+                .timestamp(LocalDateTime.now())
+                .build();
     }
 }

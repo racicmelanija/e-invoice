@@ -26,6 +26,6 @@ export class AuthGuard extends KeycloakAuthGuard {
             return true;
         }
 
-        return requiredRoles.every((role) => this.roles.includes(role));
+        return requiredRoles.some((role) => this.keycloak.getUserRoles().includes(role));
     }
 }
