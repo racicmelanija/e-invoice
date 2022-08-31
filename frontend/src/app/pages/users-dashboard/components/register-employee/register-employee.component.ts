@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { City } from 'src/app/models/city.model';
 import { Country } from 'src/app/models/country.model';
 import { CompanyService } from 'src/app/services/company.service';
+import { EmploymentService } from 'src/app/services/employment.service';
 import { LocationService } from 'src/app/services/location.service';
 
 @Component({
@@ -14,7 +15,7 @@ import { LocationService } from 'src/app/services/location.service';
 export class RegisterEmployeeComponent implements OnInit {
   registrationForm!: FormGroup;
 
-  constructor(private toastr: ToastrService) { }
+  constructor(private employmentService: EmploymentService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.initializeForm();
@@ -35,18 +36,18 @@ export class RegisterEmployeeComponent implements OnInit {
       firstName: this.registrationForm.get("firstName")?.value,
       lastName: this.registrationForm.get("lastName")?.value,
       email: this.registrationForm.get("email")?.value,
-      phoneNumber: this.registrationForm.get("phoneNumber")?.value,
-      role: this.registrationForm.get("role")?.value
+      role: this.registrationForm.get("role")?.value,
+      companyId: 'd876450f-40b6-425a-b33e-d8e0ed597489'
     }
 
-    // this.companyService.postCompany(company).subscribe(
-    //   data => {
-    //     this.toastr.success("Successfully registered company");
-    //     this.registrationForm.reset();
-    //   },
-    //   error => {
-    //     this.toastr.error(error.error.errorMessage, "Error registering company");
-    //   })
+    this.employmentService.registerEmployee(employee).subscribe(
+      data => {
+        this.toastr.success("Successfully registered employee");
+        this.registrationForm.reset();
+      },
+      error => {
+        this.toastr.error(error.error.errorMessage, "Error registering employee");
+      })
   }
 
 }

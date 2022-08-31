@@ -1,8 +1,8 @@
 package com.einvoice.companyservice.controller;
 
 import com.einvoice.companyservice.annotation.Authorize;
-import com.einvoice.companyservice.controller.dto.RegisterCompanyRequest;
-import com.einvoice.companyservice.service.RegisterCompany;
+import com.einvoice.companyservice.controller.dto.RegisterEmployeeRequest;
+import com.einvoice.companyservice.service.RegisterEmployee;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,19 +16,19 @@ import javax.validation.Valid;
 
 import java.util.UUID;
 
-import static com.einvoice.companyservice.converter.CompanyConverter.toRegisterCompanyInfo;
+import static com.einvoice.companyservice.converter.EmployeeConverter.toRegisterEmployeeInfo;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(value = "/companies")
-public class CompanyController {
+@RequestMapping(value = "/employees")
+public class EmployeeController {
 
-    private final RegisterCompany registerCompany;
+    private final RegisterEmployee registerEmployee;
 
     @PostMapping
-    @Authorize(roles = {"COMPANY_OWNER"})
-    public ResponseEntity<Void> registerCompany(JwtAuthenticationToken jwt, @Valid @RequestBody RegisterCompanyRequest request){
-        registerCompany.execute(toRegisterCompanyInfo(request, UUID.fromString(jwt.getName())));
+    @Authorize(roles = {"COMPANY_OWNER", "ADMIN"})
+    public ResponseEntity<Void> registerEmployee(JwtAuthenticationToken jwt, @Valid @RequestBody RegisterEmployeeRequest request) {
+        registerEmployee.execute(toRegisterEmployeeInfo(request, UUID.fromString(jwt.getName())));
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 }

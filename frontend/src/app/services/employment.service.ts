@@ -6,16 +6,12 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class LocationService {
+export class EmploymentService {
   baseUrl: string = environment.baseUrl + '/company-service/';
 
   constructor(private http: HttpClient) { }
 
-  getCountries(): Observable<any> {
-    return this.http.get<any>(this.baseUrl + 'countries');
-  }
-
-  getCities(): Observable<any> {
-      return this.http.get<any>(this.baseUrl + 'cities');
+  registerEmployee(employee: any): Observable<any> {
+    return this.http.post(this.baseUrl + 'employees', employee);
   }
 }

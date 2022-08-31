@@ -19,7 +19,10 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(getResponse(ex), HttpStatus.NOT_FOUND);
     }
 
-    @ExceptionHandler(CompanyAlreadyRegisteredException.class)
+    @ExceptionHandler({
+            CompanyAlreadyRegisteredException.class,
+            UserAlreadyRegisteredException.class
+    })
     public ResponseEntity<ExceptionResponse> handleConflict(Exception ex) {
         return new ResponseEntity<>(getResponse(ex), HttpStatus.CONFLICT);
     }

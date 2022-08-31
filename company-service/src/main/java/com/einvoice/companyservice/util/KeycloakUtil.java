@@ -1,5 +1,6 @@
 package com.einvoice.companyservice.util;
 
+import com.einvoice.companyservice.exception.UserAlreadyRegisteredException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -14,7 +15,7 @@ public class KeycloakUtil {
 
     public UUID getUserId(Response response) {
         if(response.getLocation() == null) {
-            throw new RuntimeException();
+            throw new UserAlreadyRegisteredException();
         }
         return UUID.fromString(response.getLocation().getPath().replace(locationPath, ""));
     }
