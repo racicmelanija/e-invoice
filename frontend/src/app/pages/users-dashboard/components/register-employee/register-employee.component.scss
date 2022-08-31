@@ -1,0 +1,17 @@
+@import 'src/styles/main.scss';
+
+.form-container{
+    margin-top: $grid-margin-height;
+    margin-bottom: $grid-margin-height;
+    width: 40vw;
+}
+
+    .first{
+        margin-right: 5px;
+        width: 100%;
+    }
+
+    .second{
+        margin-left: 5px;
+        width: 100%;
+    }
