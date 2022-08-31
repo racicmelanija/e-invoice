@@ -11,7 +11,7 @@ import org.springframework.security.web.server.SecurityWebFilterChain;
 public class SecurityConfig {
 
     @Bean
-    public SecurityWebFilterChain gatewaySecurityWebFilterChain(ServerHttpSecurity http){
+    public SecurityWebFilterChain gatewaySecurityWebFilterChain(ServerHttpSecurity http) {
         return http.authorizeExchange(exchange -> exchange.anyExchange().authenticated())
                 .oauth2ResourceServer(ServerHttpSecurity.OAuth2ResourceServerSpec::jwt)
                 .cors()

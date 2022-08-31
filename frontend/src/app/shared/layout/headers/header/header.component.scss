@@ -137,3 +137,33 @@
             cursor: pointer;
             margin-bottom: 10px;
         }
+
+#select-wrapper{
+    padding: 2.5px;
+    padding-bottom: 0px;
+    border: 1px solid color(lightgrey);
+    border-radius: 4px;
+    align-items: center;
+}
+
+    #arrow{
+        width: 22px;
+        height: 22px;
+    }
+
+    #company{
+        padding: 9px;
+        padding-top: 11px;;
+        padding-left: 1px;
+        width: 300px;
+        border: none;
+        background-image: linear-gradient(to left, #4bb3fd, #084b83);
+        background-clip: text;
+        color: transparent;
+        font-weight: bold;
+        cursor: pointer;
+
+        option{
+            color: black;
+        }
+    }

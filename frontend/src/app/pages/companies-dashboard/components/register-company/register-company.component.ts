@@ -3,8 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { City } from 'src/app/models/city.model';
 import { Country } from 'src/app/models/country.model';
-import { CompanyService } from '../../services/company.service';
-import { LocationService } from '../../services/location.service';
+import { CompanyService } from '../../../../services/company.service';
+import { LocationService } from '../../../../services/location.service';
 
 @Component({
   selector: 'app-register-company',
@@ -44,9 +44,9 @@ export class RegisterCompanyComponent implements OnInit {
       address: this.registrationForm.get("address")?.value,
       cityId: this.cities.filter(c => c.name == this.registrationForm.get("city")?.value)[0].id, 
       localCurrencyBankAccount: this.registrationForm.get("localCurrencyAccount")?.value,
-      bankingFormat: this.registrationForm.get("eBankingFormat")?.value,
+      bankingFormat: this.registrationForm.get("eBankingFormat")?.value == "" ? 'HALCOM' : this.registrationForm.get("eBankingFormat")?.value,
       foreignCurrencyBankAccount: this.registrationForm.get("foreignCurrencyAccount")?.value,
-      currency: this.registrationForm.get("currency")?.value
+      currency: this.registrationForm.get("currency")?.value == "" ? 'EUR' : this.registrationForm.get("currency")?.value
     }
 
     this.companyService.postCompany(company).subscribe(
@@ -57,10 +57,6 @@ export class RegisterCompanyComponent implements OnInit {
       error => {
         this.toastr.error(error.error.errorMessage, "Error registering company");
       })
-  }
-
-  onCountryChanged() {
-    this.registrationForm.controls.city.setValue('');
   }
 
   private initializeForm(): void{
