@@ -1,5 +1,8 @@
 import { Component, HostListener, OnInit } from '@angular/core';
+import { Store } from '@ngxs/store';
 import { KeycloakService } from 'keycloak-angular';
+import { EmploymentService } from 'src/app/services/employment.service';
+import { SetCompany } from 'src/app/shared/app.actions';
 
 @Component({
   selector: 'app-header',
@@ -14,11 +17,19 @@ export class HeaderComponent implements OnInit {
   _ = require('lodash');
   debouncedOnScroll = this._.debounce(() => this.toggleNavigationBackground(), 300, {})
   roles: any[] = [];
+  employments: any[] = [];
+  selectedCompany: any;
 
-  constructor(private keycloakService : KeycloakService) { }
+  constructor(private keycloakService : KeycloakService, private employmentService: EmploymentService, private store: Store) { }
 
   ngOnInit(): void {
     this.roles = this.keycloakService.getUserRoles();
+    this.employmentService.getEmployments().subscribe(
+      data => {
+        this.employments = data.employments;
+        this.selectedCompany = this.employments[0];
+        this.updateState();
+      })
   }
 
   @HostListener('window:scroll', ['$event'])
@@ -47,5 +58,11 @@ export class HeaderComponent implements OnInit {
 
   containsRole(roleName: string): boolean {
     return this.roles.some(role => role === roleName);
+  }
+
+  updateState(): void {
+    this.store.dispatch([
+      new SetCompany(this.selectedCompany)
+    ])
   }
 }

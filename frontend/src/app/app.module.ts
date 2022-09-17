@@ -16,10 +16,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RolesToStringPipe } from './shared/pipes/roles-to-string.pipe';
 import { RoleAssignmentDialogComponent } from './pages/users/components/role-assignment-dialog/role-assignment-dialog.component';
 import { RegisterCompanyComponent } from './pages/companies-dashboard/components/register-company/register-company.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CompaniesDashboardComponent } from './pages/companies-dashboard/companies-dashboard.component';
 import { UsersDashboardComponent } from './pages/users-dashboard/users-dashboard.component';
 import { RegisterEmployeeComponent } from './pages/users-dashboard/components/register-employee/register-employee.component';
+import { NgxsModule } from '@ngxs/store';
+import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
+import { AppState } from './shared/app.state';
 
 @NgModule({
   declarations: [
@@ -36,6 +39,7 @@ import { RegisterEmployeeComponent } from './pages/users-dashboard/components/re
     RegisterEmployeeComponent
   ],
   imports: [
+    FormsModule,
     BrowserModule,
     ReactiveFormsModule,
     AppRoutingModule, 
@@ -43,7 +47,11 @@ import { RegisterEmployeeComponent } from './pages/users-dashboard/components/re
     HttpClientModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    MatDialogModule
+    MatDialogModule,
+    NgxsModule.forRoot([
+      AppState
+    ]),
+    NgxsReduxDevtoolsPluginModule.forRoot()
   ],
   providers: [
     {

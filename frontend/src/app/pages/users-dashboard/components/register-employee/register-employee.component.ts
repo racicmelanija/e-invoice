@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Select } from '@ngxs/store';
 import { ToastrService } from 'ngx-toastr';
-import { City } from 'src/app/models/city.model';
-import { Country } from 'src/app/models/country.model';
-import { CompanyService } from 'src/app/services/company.service';
+import { Observable } from 'rxjs';
 import { EmploymentService } from 'src/app/services/employment.service';
-import { LocationService } from 'src/app/services/location.service';
+import { AppState, AppStateModel } from 'src/app/shared/app.state';
 
 @Component({
   selector: 'app-register-employee',
@@ -14,6 +13,7 @@ import { LocationService } from 'src/app/services/location.service';
 })
 export class RegisterEmployeeComponent implements OnInit {
   registrationForm!: FormGroup;
+  @Select(AppState.getCompanyId) companyId$: Observable<String> | undefined;
 
   constructor(private employmentService: EmploymentService, private toastr: ToastrService) { }
 
@@ -32,12 +32,18 @@ export class RegisterEmployeeComponent implements OnInit {
   }
 
   onSubmit(): void {
+    let companyId;
+    this.companyId$?.subscribe(
+      data => {
+        companyId = data
+      }
+    ) 
     let employee = {
       firstName: this.registrationForm.get("firstName")?.value,
       lastName: this.registrationForm.get("lastName")?.value,
       email: this.registrationForm.get("email")?.value,
       role: this.registrationForm.get("role")?.value,
-      companyId: 'd876450f-40b6-425a-b33e-d8e0ed597489'
+      companyId: companyId
     }
 
     this.employmentService.registerEmployee(employee).subscribe(

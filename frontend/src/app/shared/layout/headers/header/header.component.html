@@ -5,11 +5,8 @@
             <div id="select-wrapper" class="d-flex flex-row align-items-center input-container">
                 <svg class="einvoice-logo"></svg>
                 <div class="d-flex flex-column justify-content-start">
-                    <!-- <span class="text-start">Select company:</span> -->
-                    <select id="company" name='company'>
-                        <option>Limessoft doo</option>
-                        <option>Microsoft Corporation</option>
-                        <!-- <option *ngFor="let company of companies" [value]="company.name">{{company.name}}</option> -->
+                    <select id="company" name='company' (change)="updateState()" [(ngModel)]="selectedCompany">
+                        <option *ngFor="let e of employments" [ngValue]="e">{{e.companyName}}</option>
                     </select>
                 </div>
                 <svg id="arrow" xmlns:i="&amp;ns_ai;" xmlns="http://www.w3.org/2000/svg" fill="#a2a2a2" version="1.2" viewBox="-300 302 16 16" xml:space="preserve"><switch><g i:extraneous="self"><path d="M-296.49 308.5h9l-4.51 4.99-4.49-4.99z"/></g></switch></svg>
