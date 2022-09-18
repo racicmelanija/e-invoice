@@ -1,10 +1,14 @@
 package com.einvoice.companyservice.converter;
 
+import com.einvoice.companyservice.controller.dto.GetCompaniesResponse;
 import com.einvoice.companyservice.controller.dto.RegisterCompanyRequest;
+import com.einvoice.companyservice.model.Company;
 import com.einvoice.companyservice.service.info.ForeignCurrencyBankAccountInfo;
+import com.einvoice.companyservice.service.info.GetCompaniesInfo;
 import com.einvoice.companyservice.service.info.LocalCurrencyBankAccountInfo;
 import com.einvoice.companyservice.service.info.RegisterCompanyInfo;
 import com.einvoice.companyservice.service.info.AddressInfo;
+import org.springframework.data.domain.Page;
 
 import java.util.UUID;
 
@@ -29,6 +33,22 @@ public class CompanyConverter {
                         .accountNumber(request.getForeignCurrencyBankAccount())
                         .currency(request.getCurrency())
                         .build() : null)
+                .build();
+    }
+
+    public static GetCompaniesResponse toGetCompaniesResponse(Page<Company> result) {
+        return GetCompaniesResponse.builder()
+                .companies(result.getContent())
+                .totalElements(result.getTotalElements())
+                .build();
+    }
+
+    public static GetCompaniesInfo toGetCompaniesInfo(UUID notClientsWith, String search, int page, int size) {
+        return GetCompaniesInfo.builder()
+                .notClientsWith(notClientsWith)
+                .search(search)
+                .page(page)
+                .size(size)
                 .build();
     }
 }

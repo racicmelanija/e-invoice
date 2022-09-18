@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngxs/store';
 import { KeycloakService } from 'keycloak-angular';
+import { EmploymentService } from './services/employment.service';
+import { SetCompany } from './shared/app.actions';
 
 @Component({
   selector: 'app-root',
@@ -7,10 +10,17 @@ import { KeycloakService } from 'keycloak-angular';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'frontend';
+  title = 'e-invoice';
 
-  constructor(){}
+  constructor(private employmentService: EmploymentService, private store: Store){}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.employmentService.getEmployments().subscribe(
+      data => {
+        this.store.dispatch([
+          new SetCompany(data.employments[0])
+        ])
+      })
+  }
 
 }

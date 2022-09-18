@@ -14,4 +14,8 @@ export class CompanyService {
   postCompany(company: any): Observable<any> {
     return this.http.post(this.baseUrl, company);
   }
+
+  getCompanies(notClientsWith: String, search: string, page: number, size: number): Observable<any> {
+    return this.http.get(this.baseUrl + "?notClientsWith=" + notClientsWith + "&search=" + search + "&page=" + page + "&size=" + size);
+  }
 }

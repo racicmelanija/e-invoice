@@ -6,10 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./companies-dashboard.component.scss']
 })
 export class CompaniesDashboardComponent implements OnInit {
+  selectedButton: string = 'companies';
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  selectButton(selectedButton: string): void {
+    this.selectedButton = selectedButton;
   }
 
 }
