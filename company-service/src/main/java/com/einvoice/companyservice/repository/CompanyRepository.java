@@ -1,6 +1,8 @@
 package com.einvoice.companyservice.repository;
 
 import com.einvoice.companyservice.model.Company;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -14,4 +16,14 @@ public interface CompanyRepository extends JpaRepository<Company, UUID> {
 
     @Query("select c from Company c where c.companyRegistrationNumber = :companyRegistrationNumber")
     Optional<Company> findCompanyByRegistrationNumber(String companyRegistrationNumber);
+
+    @Query(nativeQuery = true,
+            value = "SELECT * " +
+                    "FROM company " +
+                    "WHERE id NOT IN (SELECT client_id " +
+                                     "FROM collaboration " +
+                                     "WHERE company_id = ?1) " +
+                    "AND id != ?1 " +
+                    "AND LOWER(CONCAT(company_name, tax_identification_number, company_registration_number)) LIKE LOWER(CONCAT('%', ?2, '%'))")
+    Page<Company> getCompanies(UUID notClientsWith, String search, Pageable pageable);
 }

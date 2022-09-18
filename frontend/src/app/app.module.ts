@@ -4,6 +4,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 import { initializer } from 'src/utils/app.init';
 import { MatDialogModule } from "@angular/material/dialog";
+import { MatTableModule } from "@angular/material/table";
+import { MatPaginatorModule } from "@angular/material/paginator";
+import { MatFormFieldModule  } from "@angular/material/form-field";
+import { MatInputModule   } from "@angular/material/input";
+import { MatIconModule } from '@angular/material/icon'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -23,6 +28,8 @@ import { RegisterEmployeeComponent } from './pages/users-dashboard/components/re
 import { NgxsModule } from '@ngxs/store';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { AppState } from './shared/app.state';
+import { ClientsTableComponent } from './pages/companies-dashboard/components/clients-table/clients-table.component';
+import { CompaniesTableComponent } from './pages/companies-dashboard/components/companies-table/companies-table.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +43,9 @@ import { AppState } from './shared/app.state';
     RegisterCompanyComponent,
     CompaniesDashboardComponent,
     UsersDashboardComponent,
-    RegisterEmployeeComponent
+    RegisterEmployeeComponent,
+    ClientsTableComponent,
+    CompaniesTableComponent
   ],
   imports: [
     FormsModule,
@@ -48,6 +57,11 @@ import { AppState } from './shared/app.state';
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     MatDialogModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule,
     NgxsModule.forRoot([
       AppState
     ]),

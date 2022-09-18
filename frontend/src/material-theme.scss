@@ -1,0 +1,50 @@
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+$theme-primary: mat.define-palette(mat.$blue-palette);
+$theme-accent: mat.define-palette(mat.$light-blue-palette);
+$theme-warn: mat.define-palette(mat.$red-palette);
+
+$theme: mat.define-light-theme((color: (primary: $theme-primary,
+        accent: $theme-accent,
+        warn: $theme-warn,
+      )));
+
+@include mat.all-component-themes($theme);
+@import 'src/styles/main.scss';
+
+table {
+    font-family: $base-font-family  !important;
+  }
+  
+  .mat-header-cell {
+    color: color(lightblue);
+    font-size: 14px;
+  }
+  
+  tr.mat-row {
+    height: 55px;
+    padding: 10px 40px !important;
+    border: 0.5px solid color(lightgrey);
+    transition: 0.15s ease-in-out all;
+  
+    &:hover {
+      background-color: color(lightgrey);
+    }
+  }
+  
+  th {
+    border-bottom: 0.5px solid color(lightgrey);
+  }
+  
+  .mat-cell {
+    font-size: 14px;
+    color: color(darkgrey);
+    border: none;
+  }
+  
+  mat-paginator {
+    font-family: $base-font-family  !important;
+  }
+  

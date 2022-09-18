@@ -9,7 +9,8 @@ import { UsersComponent } from './pages/users/users.component';
 const routes: Routes = [
   {path: '', redirectTo: 'users', pathMatch: 'full'},
   {path: 'users', component: UsersDashboardComponent, canActivate: [AuthGuard], data: {roles: ['COMPANY_OWNER', 'ADMIN']}},
-  {path: 'companies', component: CompaniesDashboardComponent, canActivate: [AuthGuard], data: {roles: ['COMPANY_OWNER']}}
+  {path: 'companies', component: CompaniesDashboardComponent, canActivate: [AuthGuard], data: {roles: ['COMPANY_OWNER']}},
+  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({

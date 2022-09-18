@@ -1,0 +1,39 @@
+@import 'src/styles/main.scss';
+
+.wrapper{
+    margin-top: $grid-margin-height;
+    margin-bottom: $grid-margin-height;
+    margin-left: $grid-margin-width;
+    margin-right: $grid-margin-width;
+}
+
+    table{
+        width: calc(100%);
+        border-collapse: collapse;
+    }
+
+        .mat-paginator-container{
+            padding: 0;
+        }
+
+
+    mat-form-field{
+        width: calc(100%) !important;
+        font-family: Lexend !important;
+    }
+
+        .mat-form-field-underline{
+            background-color: color(lightgray);
+        }
+
+        input{
+            padding-left: 24px;
+        }
+
+        mat-label{
+            color: color(darkgrey) !important;
+            padding-left: 24px;
+        }
+
+        
+    
