@@ -14,4 +14,8 @@ export class CollaborationService {
   getClients(companyId: String, page: number, size: number): Observable<any> {
     return this.http.get(this.baseUrl + 'collaborations?companyId=' + companyId + '&page=' + page + '&size=' + size);
   }
+
+  postCollaboration(collaboration: any): Observable<any> {
+    return this.http.post(this.baseUrl + 'collaborations', collaboration);
+  }
 }

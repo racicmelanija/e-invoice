@@ -2,7 +2,9 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Select } from '@ngxs/store';
+import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
+import { CollaborationService } from 'src/app/services/collaboration.service';
 import { CompanyService } from 'src/app/services/company.service';
 import { AppState } from 'src/app/shared/app.state';
 
@@ -16,7 +18,7 @@ export class CompaniesTableComponent implements OnInit {
   pageSize = 5;
   currentPage = 0;
   pageSizeOptions: number[] = [5, 10, 25, 100];
-  displayedColumns: string[] = ['companyName', 'companyTaxIdentificationNumber', 'companyRegistrationNumber', 'phoneNumber'];
+  displayedColumns: string[] = ['companyName', 'companyTaxIdentificationNumber', 'companyRegistrationNumber', 'phoneNumber', 'add'];
   dataSource: MatTableDataSource<any> = new MatTableDataSource();
   search: string = '';
   
@@ -24,7 +26,7 @@ export class CompaniesTableComponent implements OnInit {
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
 
-  constructor(private companyService: CompanyService) { }
+  constructor(private companyService: CompanyService, private collaborationService: CollaborationService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.loadData();
@@ -61,6 +63,24 @@ export class CompaniesTableComponent implements OnInit {
 
   searchCompanies() {
     this.loadData();
+  }
+
+  addClient(clientId: string) {
+    let companyId: String = "";
+    this.companyId$?.subscribe(
+      data => {
+        companyId = data
+      }
+    )
+    this.collaborationService.postCollaboration({ companyId: companyId, clientId: clientId }).subscribe(
+      data => {
+        this.toastr.success("Successfully added client");
+        this.loadData();
+      },
+      error => {
+        this.toastr.error(error.error.errorMessage, "Error while adding client");
+      }
+    )
   }
 
 }
