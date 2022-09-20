@@ -4,7 +4,6 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Select } from '@ngxs/store';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
-import { RoleAssignmentDialogComponent } from 'src/app/pages/users/components/role-assignment-dialog/role-assignment-dialog.component';
 import { EmploymentService } from 'src/app/services/employment.service';
 import { AppState } from 'src/app/shared/app.state';
 
@@ -20,7 +19,7 @@ export class AddRoleDialogComponent implements OnInit {
 
   @Select(AppState.getCompanyId) companyId$: Observable<String> | undefined;
 
-  constructor(private dialogRef: MatDialogRef<RoleAssignmentDialogComponent>, @Inject(MAT_DIALOG_DATA) data: any, private employmentService: EmploymentService, private toastr: ToastrService) { 
+  constructor(private dialogRef: MatDialogRef<AddRoleDialogComponent>, @Inject(MAT_DIALOG_DATA) data: any, private employmentService: EmploymentService, private toastr: ToastrService) { 
     this.userId = data.userId;
   }
 
