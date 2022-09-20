@@ -1,0 +1,21 @@
+<div class="d-flex flex-column align-items-center">
+    <div class="container text-center header">Assign or edit roles</div>
+
+    <div class="input-container form-fields role-form" *ngIf="!isCompanyOwner">
+        <form [formGroup]="assignRolesForm">
+            <label for="role" class="input-label">Add a role to the user in your company</label>
+            <select id="role" name='role' formControlName="role">
+                <option value="ADMIN">Admin</option>
+                <option value="INCOMING_INVOICE_USER">Incoming invoice user</option>
+                <option value="OUTGOING_INVOICE_USER">Outgoing invoice user</option>
+            </select>
+        </form>
+    </div>
+
+    <p class="role-form" *ngIf="isCompanyOwner">This user is the company owner and his role cannot be changed.</p>
+    
+    <div class="d-flex flex-row justify-content-between w-100">
+        <app-secondary-button text="Cancel" (click)="close()" class="first"></app-secondary-button>
+        <app-primary-button text="Confirm" [isBtnDisabled]="!assignRolesForm.valid || isCompanyOwner" (click)="addEmployeeOrRole()" class="second"></app-primary-button>
+    </div>
+</div>

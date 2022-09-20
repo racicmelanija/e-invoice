@@ -18,4 +18,12 @@ export class EmploymentService {
   getEmployments(): Observable<any> { 
     return this.http.get(this.baseUrl + 'employments');
   }
+
+  getRole(companyId: String, userId: string): Observable<any> {
+    return this.http.get(this.baseUrl + 'users/' + userId + '/roles?companyId=' + companyId);
+  }
+
+  createEmployment(employment: any): Observable<any> {
+    return this.http.post(this.baseUrl + 'employments', employment);
+  }
 }

@@ -1,9 +1,10 @@
 <div class="d-flex flex-column content">
     <div class="d-flex flex-row wrapper">
         <div class="toolbar">
-            <button class="btn ps-0 shadow-none toolbar-btn">Register new employee</button>
-            <button class="btn ps-0 shadow-none btn-unselected">See all registered users</button>
+            <button class="btn ps-0 shadow-none" [ngClass]="selectedButton == 'new-user' ? 'toolbar-btn' : 'btn-unselected'" (click)="selectButton('new-user')">Register new employee</button>
+            <button class="btn ps-0 shadow-none" [ngClass]="selectedButton == 'all-users' ? 'toolbar-btn' : 'btn-unselected'" (click)="selectButton('all-users')">All registered users</button>
         </div>
     </div>
-    <app-register-employee></app-register-employee>
+    <app-register-employee *ngIf="selectedButton == 'new-user'"></app-register-employee>
+    <app-users-table *ngIf="selectedButton == 'all-users'"></app-users-table>
 </div>

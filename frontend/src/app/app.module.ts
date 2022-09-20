@@ -30,6 +30,8 @@ import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { AppState } from './shared/app.state';
 import { ClientsTableComponent } from './pages/companies-dashboard/components/clients-table/clients-table.component';
 import { CompaniesTableComponent } from './pages/companies-dashboard/components/companies-table/companies-table.component';
+import { UsersTableComponent } from './pages/users-dashboard/components/users-table/users-table.component';
+import { AddRoleDialogComponent } from './pages/users-dashboard/components/add-role-dialog/add-role-dialog.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,9 @@ import { CompaniesTableComponent } from './pages/companies-dashboard/components/
     UsersDashboardComponent,
     RegisterEmployeeComponent,
     ClientsTableComponent,
-    CompaniesTableComponent
+    CompaniesTableComponent,
+    UsersTableComponent,
+    AddRoleDialogComponent
   ],
   imports: [
     FormsModule,
