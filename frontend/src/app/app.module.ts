@@ -13,13 +13,11 @@ import { MatIconModule } from '@angular/material/icon'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './shared/layout/headers/header/header.component';
-import { UsersComponent } from './pages/users/users.component';
 import { PrimaryButtonComponent } from './shared/components/primary-button/primary-button.component';
 import { SecondaryButtonComponent } from './shared/components/secondary-button/secondary-button.component';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RolesToStringPipe } from './shared/pipes/roles-to-string.pipe';
-import { RoleAssignmentDialogComponent } from './pages/users/components/role-assignment-dialog/role-assignment-dialog.component';
 import { RegisterCompanyComponent } from './pages/companies-dashboard/components/register-company/register-company.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CompaniesDashboardComponent } from './pages/companies-dashboard/companies-dashboard.component';
@@ -30,22 +28,24 @@ import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { AppState } from './shared/app.state';
 import { ClientsTableComponent } from './pages/companies-dashboard/components/clients-table/clients-table.component';
 import { CompaniesTableComponent } from './pages/companies-dashboard/components/companies-table/companies-table.component';
+import { UsersTableComponent } from './pages/users-dashboard/components/users-table/users-table.component';
+import { AddRoleDialogComponent } from './pages/users-dashboard/components/add-role-dialog/add-role-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    UsersComponent,
     PrimaryButtonComponent,
     SecondaryButtonComponent,
     RolesToStringPipe,
-    RoleAssignmentDialogComponent,
     RegisterCompanyComponent,
     CompaniesDashboardComponent,
     UsersDashboardComponent,
     RegisterEmployeeComponent,
     ClientsTableComponent,
-    CompaniesTableComponent
+    CompaniesTableComponent,
+    UsersTableComponent,
+    AddRoleDialogComponent
   ],
   imports: [
     FormsModule,
@@ -76,6 +76,6 @@ import { CompaniesTableComponent } from './pages/companies-dashboard/components/
     },
   ],
   bootstrap: [AppComponent],
-  entryComponents: [RoleAssignmentDialogComponent]
+  entryComponents: []
 })
 export class AppModule { }
