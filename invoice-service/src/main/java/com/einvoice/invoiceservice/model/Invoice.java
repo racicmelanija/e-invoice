@@ -34,9 +34,6 @@ public class Invoice {
     private String clientTaxId;
 
     @Column(nullable = false)
-    private UUID userId;
-
-    @Column(nullable = false)
     private String bankAccount;
 
     @Column(nullable = false)
