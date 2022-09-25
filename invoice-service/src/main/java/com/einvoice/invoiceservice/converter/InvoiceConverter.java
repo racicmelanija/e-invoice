@@ -4,6 +4,7 @@ import com.einvoice.invoiceservice.controller.dto.CreateInvoiceRequest;
 import com.einvoice.invoiceservice.controller.dto.GetInvoiceResponse;
 import com.einvoice.invoiceservice.controller.dto.GetInvoicesResponse;
 import com.einvoice.invoiceservice.controller.dto.InvoiceItemRequest;
+import com.einvoice.invoiceservice.controller.dto.InvoiceItemResponse;
 import com.einvoice.invoiceservice.model.Invoice;
 import com.einvoice.invoiceservice.model.InvoiceItem;
 import com.einvoice.invoiceservice.service.info.CreateInvoiceInfo;
@@ -24,6 +25,7 @@ public class InvoiceConverter {
                 .bankAccount(request.getBankAccount())
                 .referenceNumber(request.getReferenceNumber())
                 .invoiceItemsInfo(toInvoiceItemInfoList(request.getInvoiceItems()))
+                .total(request.getTotal())
                 .build();
     }
 
@@ -49,6 +51,7 @@ public class InvoiceConverter {
                 .clientTaxId(info.getClientTaxId())
                 .bankAccount(info.getBankAccount())
                 .referenceNumber(info.getReferenceNumber())
+                .total(info.getTotal())
                 .build();
     }
 
@@ -76,7 +79,20 @@ public class InvoiceConverter {
                                 .clientTaxId(invoice.getClientTaxId())
                                 .bankAccount(invoice.getBankAccount())
                                 .referenceNumber(invoice.getReferenceNumber())
-                                .invoiceItems(invoice.getItems())
+                                .status(invoice.getStatus())
+                                .total(invoice.getTotal())
+                                .invoiceItems(invoice.getItems().stream()
+                                        .map(item -> InvoiceItemResponse.builder()
+                                                .name(item.getName())
+                                                .unitOfMeasure(item.getUnitOfMeasure())
+                                                .unitPrice(item.getUnitPrice())
+                                                .quantity(item.getQuantity())
+                                                .discount(item.getDiscount())
+                                                .taxPercent(item.getTaxPercent())
+                                                .build()
+                                        )
+                                        .collect(Collectors.toList())
+                                )
                                 .build()
                         )
                         .collect(Collectors.toList())

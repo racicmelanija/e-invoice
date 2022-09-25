@@ -19,4 +19,5 @@ public class CreateInvoiceInfo {
     private String bankAccount;
     private String referenceNumber;
     private List<InvoiceItemInfo> invoiceItemsInfo;
+    private Double total;
 }

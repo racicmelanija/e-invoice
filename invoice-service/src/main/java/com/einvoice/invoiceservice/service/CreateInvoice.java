@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 
 import static com.einvoice.invoiceservice.converter.InvoiceConverter.toInvoice;
@@ -26,6 +27,7 @@ public class CreateInvoice {
     public void execute(CreateInvoiceInfo info) {
         Invoice invoice = toInvoice(info);
         invoice.setStatus(SENT);
+        invoice.setSentAt(new Date());
         List<InvoiceItem> items = toInvoiceItemList(info.getInvoiceItemsInfo(), invoice);
 
         invoiceRepository.save(invoice);

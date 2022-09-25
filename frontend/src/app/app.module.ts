@@ -31,6 +31,9 @@ import { CompaniesTableComponent } from './pages/companies-dashboard/components/
 import { UsersTableComponent } from './pages/users-dashboard/components/users-table/users-table.component';
 import { AddRoleDialogComponent } from './pages/users-dashboard/components/add-role-dialog/add-role-dialog.component';
 import { InvoicesDashboardComponent } from './pages/invoices-dashboard/invoices-dashboard.component';
+import { CreateInvoiceComponent } from './pages/invoices-dashboard/components/create-invoice/create-invoice.component';
+import { OutgoingInvoicesTableComponent } from './pages/invoices-dashboard/components/outgoing-invoices-table/outgoing-invoices-table.component';
+import { IncomingInvoicesTableComponent } from './pages/invoices-dashboard/components/incoming-invoices-table/incoming-invoices-table.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +50,10 @@ import { InvoicesDashboardComponent } from './pages/invoices-dashboard/invoices-
     CompaniesTableComponent,
     UsersTableComponent,
     AddRoleDialogComponent,
-    InvoicesDashboardComponent
+    InvoicesDashboardComponent,
+    CreateInvoiceComponent,
+    OutgoingInvoicesTableComponent,
+    IncomingInvoicesTableComponent
   ],
   imports: [
     FormsModule,

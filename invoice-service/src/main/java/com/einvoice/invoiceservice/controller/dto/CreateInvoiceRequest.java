@@ -41,4 +41,7 @@ public class CreateInvoiceRequest {
     @NotEmpty
     @Valid
     private List<InvoiceItemRequest> invoiceItems;
+
+    @NotNull
+    private Double total;
 }

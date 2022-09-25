@@ -1,0 +1,69 @@
+<div class="d-flex flex-column">
+    <div class="d-flex flex-column form-container align-self-center">
+        <form class="d-flex flex-column" [formGroup]="createInvoiceForm">
+            <div class="input-container form-fields" [ngClass]="{'input-container-error' : (createInvoiceForm.controls.client.touched && createInvoiceForm.controls.client.errors?.['required'])}">
+                <label for="client" class="input-label">Client</label>
+                <select id="client" name='client' formControlName="client">
+                    <option *ngFor="let c of clients" [ngValue]="c">{{c.clientName}}</option>
+                </select>
+                <span class="error-message" *ngIf="createInvoiceForm.controls.client.touched && createInvoiceForm.controls.client.errors?.['required']">Select client.</span>
+            </div>
+            <div class="input-container form-fields" [ngClass]="{'input-container-error' : (createInvoiceForm.controls.bankAccount.touched && createInvoiceForm.controls.bankAccount.errors?.['required'])}">
+                <label for="bankAccount" class="input-label">Bank account</label>
+                <select id="bankAccount" name='bankAccount' formControlName="bankAccount">
+                    <option [ngValue]="bankAccount">{{bankAccount}}</option>
+                </select>
+                <span class="error-message" *ngIf="createInvoiceForm.controls.bankAccount.touched && createInvoiceForm.controls.bankAccount.errors?.['required']">Select bank account.</span>
+            </div>
+            <div class="input-container form-fields" [ngClass]="{'input-container-error' : (createInvoiceForm.controls.referenceNumber.touched && createInvoiceForm.controls.referenceNumber.errors?.['required'])}">
+                <label for="referenceNumber" class="input-label">Reference number</label>
+                <input id="referenceNumber" type="text" name="referenceNumber" formControlName="referenceNumber">
+                <span class="error-message" *ngIf="createInvoiceForm.controls.referenceNumber.touched && createInvoiceForm.controls.referenceNumber.errors?.['required']">Reference number cannot be empty.</span>
+            </div>
+
+            <div formArrayName="invoiceItems">
+                <div *ngFor="let item of invoiceItems().controls; let i=index" [formGroupName]="i" class="d-flex flex-row">
+                    <div class="d-flex flex-row justify-content-between">
+                        <div class="input-container form-fields me-1">
+                            <label for="name" class="input-label">Item name</label>
+                            <input id="name" type="text" name="name" formControlName="name">  
+                        </div>
+                        <div class="input-container form-fields me-1">
+                            <label for="unitOfMeasure" class="input-label">Unit of measure</label>
+                            <input id="unitOfMeasure" type="text" name="unitOfMeasure" formControlName="unitOfMeasure">
+                        </div>
+                        <div class="input-container form-fields me-1">
+                            <label for="unitPrice" class="input-label">Unit price</label>
+                            <input id="unitPrice" type="text" name="unitPrice" formControlName="unitPrice" (change)="updateTotal()"> 
+                        </div>
+                        <div class="input-container form-fields me-1">
+                            <label for="quantity" class="input-label">Quantity</label>
+                            <input id="quantity" type="text" name="quantity" formControlName="quantity" (change)="updateTotal()">  
+                        </div>
+                    </div>
+                    <div class="input-container form-fields me-1">
+                        <label for="discount" class="input-label">Discount %</label>
+                        <input id="discount" type="text" name="discount" formControlName="discount" (change)="updateTotal()"> 
+                    </div>
+                    <div class="input-container form-fields">
+                        <label for="taxPercent" class="input-label">Tax %</label>
+                        <input id="taxPercent" type="text" name="taxPercent" formControlName="taxPercent" (change)="updateTotal()">  
+                    </div> 
+                </div>
+            </div>
+            
+            <div class="add-room-btn d-flex flex-row justify-content-center mb-3" role="button">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M19 3H5C3.89 3 3 3.9 3 5V19C3 20.1 3.89 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3ZM16 13H13V16C13 16.55 12.55 17 12 17C11.45 17 11 16.55 11 16V13H8C7.45 13 7 12.55 7 12C7 11.45 7.45 11 8 11H11V8C11 7.45 11.45 7 12 7C12.55 7 13 7.45 13 8V11H16C16.55 11 17 11.45 17 12C17 12.55 16.55 13 16 13Z" fill="#A2A2A2"/>
+                </svg>                
+                <span class="grey-text ms-2 align-self-center" (click)="addItem()">Add another item</span>
+            </div>
+
+            <div class="d-flex justify-content-end" id="total-container">
+                <span class="grey-text my-2">Total:  {{ total }}$</span>
+            </div>
+
+        </form>
+        <app-primary-button text="Send invoice" [isBtnDisabled]="!createInvoiceForm.valid" (click)="onSubmit()"></app-primary-button>
+    </div>
+</div>

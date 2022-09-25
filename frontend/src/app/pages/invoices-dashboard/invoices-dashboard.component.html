@@ -6,7 +6,7 @@
             <button class="btn ps-0 shadow-none" [ngClass]="selectedButton == 'incoming-invoices' ? 'toolbar-btn' : 'btn-unselected'" (click)="selectButton('incoming-invoices')">Incoming invoices</button>
         </div>
     </div>
-    <!-- <app-companies-table *ngIf="selectedButton == 'new-invoice'"></app-companies-table> -->
-    <!-- <app-clients-table *ngIf="selectedButton == 'outgoing-invoices'"></app-clients-table> -->
-    <!-- <app-register-company *ngIf="selectedButton == 'incoming-invoices'"></app-register-company> -->
+    <app-create-invoice *ngIf="selectedButton == 'new-invoice'"></app-create-invoice>    
+    <app-outgoing-invoices-table *ngIf="selectedButton == 'outgoing-invoices'"></app-outgoing-invoices-table>
+    <app-incoming-invoices-table *ngIf="selectedButton == 'incoming-invoices'"></app-incoming-invoices-table>
 </div>

@@ -8,8 +8,10 @@ import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import java.util.Date;
 import java.util.List;
@@ -51,6 +53,10 @@ public class Invoice {
     @Column(nullable = false)
     private Date sentAt;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name="invoice_id")
     private List<InvoiceItem> items;
+
+    @Column(nullable = false)
+    private Double total;
 }

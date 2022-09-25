@@ -1,6 +1,7 @@
 package com.einvoice.invoiceservice.controller.dto;
 
 import com.einvoice.invoiceservice.model.InvoiceItem;
+import com.einvoice.invoiceservice.model.InvoiceStatus;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -16,5 +17,7 @@ public class GetInvoiceResponse {
     private String clientTaxId;
     private String bankAccount;
     private String referenceNumber;
-    private List<InvoiceItem> invoiceItems;
+    private InvoiceStatus status;
+    private List<InvoiceItemResponse> invoiceItems;
+    private Double total;
 }
