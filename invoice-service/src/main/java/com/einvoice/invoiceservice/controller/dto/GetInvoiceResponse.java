@@ -1,22 +1,20 @@
-package com.einvoice.invoiceservice.service.info;
+package com.einvoice.invoiceservice.controller.dto;
 
+import com.einvoice.invoiceservice.model.InvoiceItem;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.ToString;
 
 import java.util.List;
 import java.util.UUID;
 
 @Getter
 @Builder
-@ToString
-public class CreateInvoiceInfo {
+public class GetInvoiceResponse {
 
-    private UUID companyId;
+    private UUID invoiceId;
     private String companyTaxId;
-    private UUID clientId;
     private String clientTaxId;
     private String bankAccount;
     private String referenceNumber;
-    private List<InvoiceItemInfo> invoiceItemsInfo;
+    private List<InvoiceItem> invoiceItems;
 }

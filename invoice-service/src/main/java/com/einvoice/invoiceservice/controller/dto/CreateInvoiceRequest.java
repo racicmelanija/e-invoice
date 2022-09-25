@@ -9,7 +9,9 @@ import lombok.Setter;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.List;
+import java.util.UUID;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -18,8 +20,14 @@ import java.util.List;
 @Builder
 public class CreateInvoiceRequest {
 
+    @NotNull
+    private UUID companyId;
+
     @NotBlank
     private String companyTaxId;
+
+    @NotNull
+    private UUID clientId;
 
     @NotBlank
     private String clientTaxId;

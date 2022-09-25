@@ -13,6 +13,7 @@ import java.util.List;
 
 import static com.einvoice.invoiceservice.converter.InvoiceConverter.toInvoice;
 import static com.einvoice.invoiceservice.converter.InvoiceConverter.toInvoiceItemList;
+import static com.einvoice.invoiceservice.model.InvoiceStatus.SENT;
 
 @Service
 @RequiredArgsConstructor
@@ -24,6 +25,7 @@ public class CreateInvoice {
     @Transactional(rollbackFor = Throwable.class)
     public void execute(CreateInvoiceInfo info) {
         Invoice invoice = toInvoice(info);
+        invoice.setStatus(SENT);
         List<InvoiceItem> items = toInvoiceItemList(info.getInvoiceItemsInfo(), invoice);
 
         invoiceRepository.save(invoice);

@@ -13,8 +13,9 @@
             </div>
         </div>
         <div class="nav-items d-flex flex-row align-items-center">
-            <span class="nav-item" *ngIf="roles.includes('COMPANY_OWNER')" [ngClass]="selectedButton == 'users' ? 'nav-item-selected' : 'nav-item'" (click)="selectButton('users')" [routerLink]="['/users']">Users</span>
-            <span class="nav-item" *ngIf="roles.includes('COMPANY_OWNER') || roles.includes('ROLE_ADMIN')" [ngClass]="selectedButton == 'companies' ? 'nav-item-selected' : 'nav-item'" (click)="selectButton('companies')" [routerLink]="['/companies']">Companies</span>
+            <span class="nav-item" *ngIf="roles.includes('COMPANY_OWNER') || roles.includes('ADMIN') || roles.includes('INCOMING_INVOICE_USER') || roles.includes('OUTGOING_INVOICE_USER')" [ngClass]="selectedButton == 'invoices' ? 'nav-item-selected' : 'nav-item'" (click)="selectButton('invoices')" [routerLink]="['/invoices']">Invoices</span>
+            <span class="nav-item" *ngIf="roles.includes('COMPANY_OWNER') || roles.includes('ADMIN')" [ngClass]="selectedButton == 'users' ? 'nav-item-selected' : 'nav-item'" (click)="selectButton('users')" [routerLink]="['/users']">Users</span>
+            <span class="nav-item" *ngIf="roles.includes('COMPANY_OWNER') || roles.includes('ADMIN')" [ngClass]="selectedButton == 'companies' ? 'nav-item-selected' : 'nav-item'" (click)="selectButton('companies')" [routerLink]="['/companies']">Companies</span>
             <span class="nav-item" (click)="logout()">Log out</span>
         </div>
         <svg class="navbar-menu" (click)="toggleDropdownMenu()"></svg>
@@ -22,8 +23,9 @@
     <div class="mobile-nav">
         <div class="overlay" [ngClass]="{'overlay-visible' : dropdownMenuVisible}" (click)="toggleDropdownMenu()"></div>
         <div class="nav-items-mobile d-flex flex-column" [ngClass]="{'nav-items-mobile-visible' : dropdownMenuVisible}">
-            <span class="nav-item-mobile mt-2" *ngIf="roles.includes('COMPANY_OWNER')" [routerLink]="['/users']">Users</span>
-            <span class="nav-item-mobile" *ngIf="roles.includes('COMPANY_OWNER') || roles.includes('ROLE_ADMIN')" [routerLink]="['/companies']">Companies</span>
+            <span class="nav-item-mobile mt-2" *ngIf="roles.includes('COMPANY_OWNER') || roles.includes('ADMIN') || roles.includes('INCOMING_INVOICE_USER') || roles.includes('OUTGOING_INVOICE_USER')" [ngClass]="selectedButton == 'invoices' ? 'nav-item-selected' : 'nav-item'" (click)="selectButton('invoices')" [routerLink]="['/invoices']">Invoices</span>
+            <span class="nav-item-mobile" *ngIf="roles.includes('COMPANY_OWNER') || roles.includes('ADMIN')" [routerLink]="['/users']">Users</span>
+            <span class="nav-item-mobile" *ngIf="roles.includes('COMPANY_OWNER') || roles.includes('ADMIN')" [routerLink]="['/companies']">Companies</span>
             <span class="nav-item-mobile" (click)="logout()">Log out</span>
         </div>
     </div>

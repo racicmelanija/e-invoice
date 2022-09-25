@@ -28,7 +28,13 @@ public class Invoice {
     private UUID id;
 
     @Column(nullable = false)
+    private UUID companyId;
+
+    @Column(nullable = false)
     private String companyTaxId;
+
+    @Column(nullable = false)
+    private UUID clientId;
 
     @Column(nullable = false)
     private String clientTaxId;
@@ -40,7 +46,7 @@ public class Invoice {
     private String referenceNumber;
 
     @Column(nullable = false)
-    private String status;
+    private InvoiceStatus status;
 
     @Column(nullable = false)
     private Date sentAt;
