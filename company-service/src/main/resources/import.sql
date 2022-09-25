@@ -17,3 +17,6 @@ insert into employment (company_id, employee_id, role) values ('d876450f-40b6-42
 insert into employment (company_id, employee_id, role) values ('98efa33d-e953-4fb3-9418-996c9e12769d', 'ff1e1b8e-d87c-4f60-812a-f123b875d668', 'COMPANY_OWNER');
 
 insert into collaboration (company_id, client_id) values ('d876450f-40b6-425a-b33e-d8e0ed597489', '98efa33d-e953-4fb3-9418-996c9e12769d');
+
+insert into local_currency_bank_account(id, account_number, e_banking_format, company_id) values ('f785f055-19ce-4731-8431-4dea44846b46', '125-0381695557391-74', 'HALCOM', 'd876450f-40b6-425a-b33e-d8e0ed597489');
+insert into local_currency_bank_account(id, account_number, e_banking_format, company_id) values ('6d7e356e-e570-4c29-8bb0-e32efecc16c0', '125-0381685557391-55', 'HALCOM', '98efa33d-e953-4fb3-9418-996c9e12769d');

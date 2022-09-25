@@ -1,0 +1,12 @@
+<div class="d-flex flex-column content">
+    <div class="d-flex flex-row wrapper">
+        <div class="toolbar">
+            <button class="btn ps-0 shadow-none" [ngClass]="selectedButton == 'new-invoice' ? 'toolbar-btn' : 'btn-unselected'" (click)="selectButton('new-invoice')">Create invoice</button>
+            <button class="btn ps-0 shadow-none" [ngClass]="selectedButton == 'outgoing-invoices' ? 'toolbar-btn' : 'btn-unselected'" (click)="selectButton('outgoing-invoices')">Outgoing invoices</button>
+            <button class="btn ps-0 shadow-none" [ngClass]="selectedButton == 'incoming-invoices' ? 'toolbar-btn' : 'btn-unselected'" (click)="selectButton('incoming-invoices')">Incoming invoices</button>
+        </div>
+    </div>
+    <app-create-invoice *ngIf="selectedButton == 'new-invoice'"></app-create-invoice>    
+    <app-outgoing-invoices-table *ngIf="selectedButton == 'outgoing-invoices'"></app-outgoing-invoices-table>
+    <app-incoming-invoices-table *ngIf="selectedButton == 'incoming-invoices'"></app-incoming-invoices-table>
+</div>

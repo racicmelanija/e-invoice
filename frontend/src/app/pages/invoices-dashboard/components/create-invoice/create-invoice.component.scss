@@ -1,0 +1,22 @@
+@import 'src/styles/main.scss';
+
+.form-container{
+    margin-top: $grid-margin-height;
+    margin-bottom: $grid-margin-height;
+    margin-left: $grid-margin-width;
+    margin-right: $grid-margin-width;
+}
+
+    .first{
+        margin-right: 5px;
+        width: 100%;
+    }
+
+    .second{
+        margin-left: 5px;
+        width: 100%;
+    }
+
+#total-container{
+    border-top: 1px solid color(darkgrey);
+}

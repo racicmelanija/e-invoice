@@ -18,4 +18,8 @@ export class CompanyService {
   getCompanies(notClientsWith: String, search: string, page: number, size: number): Observable<any> {
     return this.http.get(this.baseUrl + "?notClientsWith=" + notClientsWith + "&search=" + search + "&page=" + page + "&size=" + size);
   }
+
+  getCompany(companyId: String): Observable<any> {
+    return this.http.get(this.baseUrl + "/" + companyId);
+  }
 }

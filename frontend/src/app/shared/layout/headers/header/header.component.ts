@@ -13,7 +13,7 @@ export class HeaderComponent implements OnInit {
   isVisible: boolean = true;
   dropdownMenuVisible: boolean = false;
   isGlassEffect: boolean = false;
-  selectedButton: string = 'users';
+  selectedButton: string = 'invoices';
   _ = require('lodash');
   debouncedOnScroll = this._.debounce(() => this.toggleNavigationBackground(), 300, {})
   roles: any[] = [];
