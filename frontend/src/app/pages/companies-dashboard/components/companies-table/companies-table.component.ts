@@ -40,18 +40,18 @@ export class CompaniesTableComponent implements OnInit {
     let companyId: String = "";
     this.companyId$?.subscribe(
       data => {
-        companyId = data
+        companyId = data;
+        this.companyService.getCompanies(companyId, this.search, this.currentPage, this.pageSize).subscribe(
+          data => {
+            this.dataSource.data = data.companies;
+            setTimeout(() => {
+              this.paginator.pageIndex = this.currentPage;
+              this.paginator.length = data.totalElements;
+            })
+          }
+        )
       }
-    )
-    this.companyService.getCompanies(companyId, this.search, this.currentPage, this.pageSize).subscribe(
-      data => {
-        this.dataSource.data = data.companies;
-        setTimeout(() => {
-          this.paginator.pageIndex = this.currentPage;
-          this.paginator.length = data.totalElements;
-        })
-      }
-    )
+    ) 
   }
 
   pageChanged(event: PageEvent) {

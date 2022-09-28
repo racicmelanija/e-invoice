@@ -34,6 +34,7 @@ import { InvoicesDashboardComponent } from './pages/invoices-dashboard/invoices-
 import { CreateInvoiceComponent } from './pages/invoices-dashboard/components/create-invoice/create-invoice.component';
 import { OutgoingInvoicesTableComponent } from './pages/invoices-dashboard/components/outgoing-invoices-table/outgoing-invoices-table.component';
 import { IncomingInvoicesTableComponent } from './pages/invoices-dashboard/components/incoming-invoices-table/incoming-invoices-table.component';
+import { UpdateInvoiceDialogComponent } from './pages/invoices-dashboard/components/update-invoice-dialog/update-invoice-dialog.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { IncomingInvoicesTableComponent } from './pages/invoices-dashboard/compo
     InvoicesDashboardComponent,
     CreateInvoiceComponent,
     OutgoingInvoicesTableComponent,
-    IncomingInvoicesTableComponent
+    IncomingInvoicesTableComponent,
+    UpdateInvoiceDialogComponent,
   ],
   imports: [
     FormsModule,

@@ -33,18 +33,18 @@ export class CreateInvoiceComponent implements OnInit {
     let companyId: String = "";
     this.companyId$?.subscribe(
       data => {
-        companyId = data
-      }
-    )
-    this.collaborationService.getClients(companyId, 0, 1000).subscribe(
-      data => {
-        this.clients = data.collaborations;
-      }
-    )
-    this.companyService.getCompany(companyId).subscribe(
-      data => {
-        this.bankAccount = data.bankAccount;
-        this.companyTaxId = data.taxId;  
+        companyId = data;
+        this.collaborationService.getClients(companyId, 0, 1000).subscribe(
+          data => {
+            this.clients = data.collaborations;
+          }
+        )
+        this.companyService.getCompany(companyId).subscribe(
+          data => {
+            this.bankAccount = data.bankAccount;
+            this.companyTaxId = data.taxId;  
+          }
+        )
       }
     )
 

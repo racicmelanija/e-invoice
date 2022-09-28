@@ -37,16 +37,16 @@ export class ClientsTableComponent implements OnInit {
     let companyId: String = "";
     this.companyId$?.subscribe(
       data => {
-        companyId = data
-      }
-    )
-    this.collaborationService.getClients(companyId, this.currentPage, this.pageSize).subscribe(
-      data => {
-        this.dataSource.data = data.collaborations;
-        setTimeout(() => {
-          this.paginator.pageIndex = this.currentPage;
-          this.paginator.length = data.totalElements;
-        })
+        companyId = data;
+        this.collaborationService.getClients(companyId, this.currentPage, this.pageSize).subscribe(
+          data => {
+            this.dataSource.data = data.collaborations;
+            setTimeout(() => {
+              this.paginator.pageIndex = this.currentPage;
+              this.paginator.length = data.totalElements;
+            })
+          }
+        )
       }
     )
   }

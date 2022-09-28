@@ -37,16 +37,16 @@ export class OutgoingInvoicesTableComponent implements OnInit {
     let companyId: String = "";
     this.companyId$?.subscribe(
       data => {
-        companyId = data
-      }
-    )
-    this.invoiceService.getOutgoingInvoices(companyId, this.currentPage, this.pageSize).subscribe(
-      data => {
-        this.dataSource.data = data.invoices;
-        setTimeout(() => {
-          this.paginator.pageIndex = this.currentPage;
-          this.paginator.length = data.totalElements;
-        })
+        companyId = data;
+        this.invoiceService.getOutgoingInvoices(companyId, this.currentPage, this.pageSize).subscribe(
+          data => {
+            this.dataSource.data = data.invoices;
+            setTimeout(() => {
+              this.paginator.pageIndex = this.currentPage;
+              this.paginator.length = data.totalElements;
+            })
+          }
+        )
       }
     )
   }

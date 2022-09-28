@@ -22,4 +22,8 @@ export class InvoiceService {
   postInvoice(invoice: any): Observable<any> {
     return this.http.post(this.baseUrl, invoice);
   }
+
+  updateInvoice(invoice: any): Observable<any> {
+    return this.http.put(this.baseUrl, invoice);
+  }
 }

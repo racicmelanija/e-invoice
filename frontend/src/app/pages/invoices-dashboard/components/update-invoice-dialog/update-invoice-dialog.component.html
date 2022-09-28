@@ -1,0 +1,18 @@
+<div class="d-flex flex-column align-items-center">
+    <div class="container text-center header">Update invoice status</div>
+
+    <div class="input-container form-fields role-form">
+        <form [formGroup]="updateInvoiceForm">
+            <label for="status" class="input-label">Accept or decline the recived invoice</label>
+            <select id="status" name='status' formControlName="status">
+                <option value="ACCEPTED">Accept</option>
+                <option value="DECLINED">Decline</option>
+            </select>
+        </form>
+    </div>
+    
+    <div class="d-flex flex-row justify-content-between w-100">
+        <app-secondary-button text="Cancel" (click)="close()" class="first"></app-secondary-button>
+        <app-primary-button text="Confirm" [isBtnDisabled]="!updateInvoiceForm.valid" (click)="updateInvoice()" class="second"></app-primary-button>
+    </div>
+</div>
